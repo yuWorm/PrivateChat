@@ -1,0 +1,192 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* 基础变量设置 */
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 240 10% 3.9%;
+    --card: 0 0% 100%;
+    --card-foreground: 240 10% 3.9%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 240 10% 3.9%;
+    --primary: 142.1 76.2% 36.3%;
+    --primary-foreground: 355.7 100% 97.3%;
+    --secondary: 240 4.8% 95.9%;
+    --secondary-foreground: 240 5.9% 10%;
+    --muted: 240 4.8% 95.9%;
+    --muted-foreground: 240 3.8% 46.1%;
+    --accent: 240 4.8% 95.9%;
+    --accent-foreground: 240 5.9% 10%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 240 5.9% 90%;
+    --input: 240 5.9% 90%;
+    --ring: 142.1 76.2% 36.3%;
+    --radius: 0.75rem;
+  }
+
+  .dark {
+    --background: 20 14.3% 4.1%;
+    --foreground: 0 0% 95%;
+    --card: 24 9.8% 10%;
+    --card-foreground: 0 0% 95%;
+    --popover: 0 0% 9%;
+    --popover-foreground: 0 0% 95%;
+    --primary: 142.1 70.6% 45.3%;
+    --primary-foreground: 144.9 80.4% 10%;
+    --secondary: 240 3.7% 15.9%;
+    --secondary-foreground: 0 0% 98%;
+    --muted: 0 0% 15%;
+    --muted-foreground: 240 5% 64.9%;
+    --accent: 12 6.5% 15.1%;
+    --accent-foreground: 0 0% 98%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 85.7% 97.3%;
+    --border: 240 3.7% 15.9%;
+    --input: 240 3.7% 15.9%;
+    --ring: 142.4 71.8% 29.2%;
+  }
+
+  .cyberpunk {
+    --background: 246 45% 5%;
+    --foreground: 180 100% 90%;
+    --card: 246 45% 8%;
+    --card-foreground: 180 100% 90%;
+    --popover: 246 45% 5%;
+    --popover-foreground: 180 100% 90%;
+    --primary: 326 100% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 180 100% 50%;
+    --secondary-foreground: 0 0% 100%;
+    --muted: 246 45% 10%;
+    --muted-foreground: 180 100% 80%;
+    --accent: 56 100% 50%;
+    --accent-foreground: 0 0% 100%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 326 100% 50%;
+    --input: 246 45% 10%;
+    --ring: 326 100% 50%;
+  }
+
+  .matrix {
+    --background: 0 0% 0%;
+    --foreground: 135 100% 50%;
+    --card: 0 0% 5%;
+    --card-foreground: 135 100% 50%;
+    --popover: 0 0% 0%;
+    --popover-foreground: 135 100% 50%;
+    --primary: 135 100% 50%;
+    --primary-foreground: 0 0% 0%;
+    --secondary: 135 80% 40%;
+    --secondary-foreground: 0 0% 0%;
+    --muted: 0 0% 10%;
+    --muted-foreground: 135 100% 40%;
+    --accent: 135 100% 70%;
+    --accent-foreground: 0 0% 0%;
+    --destructive: 0 100% 50%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 135 100% 50%;
+    --input: 0 0% 10%;
+    --ring: 135 100% 50%;
+  }
+}
+
+/* 自定义工具类 */
+@layer utilities {
+  .cyber-glitch {
+    position: relative;
+    display: inline-block;
+  }
+
+  .cyber-glitch::before,
+  .cyber-glitch::after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .cyber-glitch::before {
+    left: 2px;
+    text-shadow: -2px 0 #ff00c1;
+    clip: rect(24px, 550px, 90px, 0);
+    animation: glitch-anim-2 3s infinite linear alternate-reverse;
+  }
+
+  .cyber-glitch::after {
+    left: -2px;
+    text-shadow: -2px 0 #00fff9;
+    clip: rect(85px, 550px, 140px, 0);
+    animation: glitch-anim 2.5s infinite linear alternate-reverse;
+  }
+}
+
+/* 动画定义 */
+@keyframes glitch-anim {
+  0% {
+    clip: rect(11px, 9999px, 82px, 0);
+  }
+  5% {
+    clip: rect(37px, 9999px, 129px, 0);
+  }
+  10% {
+    clip: rect(76px, 9999px, 89px, 0);
+  }
+  15% {
+    clip: rect(100px, 9999px, 144px, 0);
+  }
+  20% {
+    clip: rect(17px, 9999px, 31px, 0);
+  }
+  25% {
+    clip: rect(46px, 9999px, 69px, 0);
+  }
+  100% {
+    clip: rect(0, 0, 0, 0);
+  }
+}
+
+@keyframes glitch-anim-2 {
+  0% {
+    clip: rect(22px, 9999px, 73px, 0);
+  }
+  5% {
+    clip: rect(48px, 9999px, 140px, 0);
+  }
+  10% {
+    clip: rect(87px, 9999px, 100px, 0);
+  }
+  15% {
+    clip: rect(111px, 9999px, 155px, 0);
+  }
+  20% {
+    clip: rect(28px, 9999px, 42px, 0);
+  }
+  25% {
+    clip: rect(57px, 9999px, 80px, 0);
+  }
+  100% {
+    clip: rect(0, 0, 0, 0);
+  }
+}
+
+/* 主题过渡动画 */
+.theme-transition {
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Matrix Rain canvas 样式 */
+.matrix-rain {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 0;
+}

@@ -1,0 +1,14 @@
+{
+  "name": "private_chat",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./backend/src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "cd ./backend && npm run start",
+    "build": "cd ./frontend && npm run build"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
