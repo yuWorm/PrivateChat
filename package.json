@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "cd ./backend && npm run start",
-    "build": "cd ./frontend && npm run build"
+    "build": "cd ./frontend && npm run build",
+    "install": "cd ./frontend && pnpm i && cd ../backend && pnpm i"
   },
   "keywords": [],
   "author": "",
