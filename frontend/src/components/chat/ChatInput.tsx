@@ -1,4 +1,4 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Send, Image as ImageIcon, Paperclip, Smile } from "lucide-react";
@@ -11,6 +11,7 @@ import { ChatInputProps, MessageType } from "@/types";
 import { readFileAsBase64 } from "@/utils/fileHandlers";
 import { encryptMessage } from "@/utils/crypto";
 import { useTranslation } from "react-i18next";
+import { useToast } from "@/hooks/use-toast.ts";
 
 const EMOJI_GROUPS = [
   ["😊", "😂", "🥰", "😍", "😒", "😭", "😩", "😤"],
@@ -46,10 +47,20 @@ export const ChatInput: React.FC<ChatInputProps> = ({
   roomKey,
 }) => {
   const { t } = useTranslation();
+  const { toast } = useToast();
   const [input, setInput] = useState("");
   const [isImageMode, setIsImageMode] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
+
+  // 设置渲染后触发，不然会出现还没切换文件类型就大开了上传框的问题
+  const [fileInputClick, setFileInputClick] = useState(false);
+  useEffect(() => {
+    if (fileInputClick) {
+      fileInputRef.current?.click();
+      setFileInputClick(false);
+    }
+  }, [fileInputClick]);
 
   const handleSendText = (e: React.FormEvent) => {
     e.preventDefault();
@@ -67,14 +78,32 @@ export const ChatInput: React.FC<ChatInputProps> = ({
   };
 
   const handleFileUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
+    const file = e.target.files?.[0] as File;
     if (!file) return;
+
+    // 文件大小限制（转换为 MB）先写死，后面加配置修改
+    const fileSizeInMB = file.size / (1024 * 1024);
+    const maxSizeInMB = isImageMode ? 5 : 8;
+
+    if (fileSizeInMB > maxSizeInMB) {
+      // 可以替换为你的提示组件，比如 Toast
+      toast({
+        title: "Error",
+        description: `The file size cannot exceed ${maxSizeInMB}MB`,
+        variant: "destructive",
+        duration: 1000,
+      });
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+      return;
+    }
 
     try {
       const base64 = await readFileAsBase64(file);
       const type: MessageType = isImageMode
         ? "image"
-        : `file/${file.type.split("/")[1] || "binary"}`;
+        : `file/${file.name || "binary"}`;
       const encryptedContent = encryptMessage(base64, roomKey);
 
       onSendMessage({
@@ -101,7 +130,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
           type="file"
           className="hidden"
           onChange={handleFileUpload}
-          accept={isImageMode ? "image/*" : undefined}
+          accept={isImageMode ? "image/*" : "*/*"}
         />
 
         <Popover>
@@ -123,7 +152,8 @@ export const ChatInput: React.FC<ChatInputProps> = ({
           size="icon"
           onClick={() => {
             setIsImageMode(false);
-            fileInputRef.current?.click();
+            console.error(isImageMode);
+            setFileInputClick(true);
           }}
         >
           <Paperclip className="h-5 w-5" />
@@ -135,7 +165,7 @@ export const ChatInput: React.FC<ChatInputProps> = ({
           size="icon"
           onClick={() => {
             setIsImageMode(true);
-            fileInputRef.current?.click();
+            setFileInputClick(true);
           }}
         >
           <ImageIcon className="h-5 w-5" />

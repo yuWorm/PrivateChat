@@ -51,7 +51,7 @@ export const Message: React.FC<MessageProps> = ({
           <FileText className="h-5 w-5" />
           <a
             href={decryptedContent}
-            download={`file_${Date.now()}.${message.type.split("/")[1]}`}
+            download={`file_${message.type.split("/")[1]}`}
             className="text-blue-500 hover:underline"
           >
             下载文件

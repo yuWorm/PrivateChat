@@ -18,6 +18,7 @@ const zhCN = {
     uploadFile: "上传文件",
     inputMessage: "输入消息...",
     decryptFailed: "解密失败",
+    emptyMessage: "还没有消息，开始聊天吧！",
   },
   theme: {
     light: "亮色",
@@ -64,6 +65,7 @@ const enUS = {
     uploadFile: "Upload File",
     inputMessage: "Type a message...",
     decryptFailed: "Decryption failed",
+    emptyMessage: "No messages yet, start chatting!",
   },
   theme: {
     light: "Light",

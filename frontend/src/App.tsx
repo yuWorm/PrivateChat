@@ -5,6 +5,7 @@ import { AuthProvider, useAuth } from "./contexts/AuthContext";
 // import { WebSocketProvider } from "./contexts/WebSocketContext";
 import { ThemeProvider, useTheme } from "./contexts/ThemeContext";
 import { MatrixRain } from "./components/theme/MatrixRain";
+import { Toaster } from "@/components/ui/toaster.tsx";
 
 // 将 ChatApp 组件移出去单独定义
 const ChatApp: React.FC = () => {
@@ -30,6 +31,7 @@ const ChatApp: React.FC = () => {
 const App: React.FC = () => {
   return (
     <ThemeProvider>
+      <Toaster />
       <AuthProvider>
         <AppContent />
       </AuthProvider>

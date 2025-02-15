@@ -9,6 +9,7 @@ import {
 } from "@/components/ui/dropdown-menu";
 import { useTheme } from "@/contexts/ThemeContext";
 import type { Theme } from "@/styles/themes";
+import { useTranslation } from "react-i18next";
 
 const themeIcons = {
   light: <Monitor className="h-5 w-5" />,
@@ -17,15 +18,16 @@ const themeIcons = {
   matrix: <Terminal className="h-5 w-5" />,
 };
 
-const themeNames = {
-  light: "亮色",
-  dark: "暗色",
-  cyberpunk: "赛博朋克",
-  matrix: "矩阵",
-};
-
 export const ThemeToggle: React.FC = () => {
+  const { t } = useTranslation();
   const { theme, setTheme } = useTheme();
+
+  const themeNames = {
+    light: t("theme.light"),
+    dark: t("theme.dark"),
+    cyberpunk: t("theme.cyberpunk"),
+    matrix: t("theme.matrix"),
+  };
 
   const CurrentIcon = themeIcons[theme];
 
@@ -34,7 +36,7 @@ export const ThemeToggle: React.FC = () => {
       <DropdownMenuTrigger asChild>
         <Button variant="ghost" size="icon" className="relative">
           {CurrentIcon}
-          <span className="sr-only">切换主题</span>
+          <span className="sr-only">{t("theme.toggleTheme")}</span>
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end">
