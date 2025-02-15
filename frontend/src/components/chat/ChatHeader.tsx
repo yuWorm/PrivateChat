@@ -11,8 +11,10 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
+
 import { useTranslation } from "react-i18next";
 import { LanguageSwitch } from "@/i18n/LanguageSwitch.tsx";
+import { ShareRoom } from "@/components/chat/ShareRoom.tsx";
 
 interface ChatHeaderProps {
   roomId: string;
@@ -54,6 +56,7 @@ export const ChatHeader: React.FC<ChatHeaderProps> = ({
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
+          <ShareRoom roomId={roomId} username={username} />
         </div>
       </div>
     </div>

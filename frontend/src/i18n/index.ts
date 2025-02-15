@@ -6,6 +6,8 @@ import LanguageDetector from "i18next-browser-languagedetector";
 const zhCN = {
   common: {
     send: "发送",
+    copy: "复制",
+    copied: "复制成功",
     logout: "退出",
     room: "房间",
     username: "用户名",
@@ -40,6 +42,9 @@ const zhCN = {
     messageNotSent: "消息未发送",
     messageDelivered: "已发送",
     messageRead: "已读",
+    shareRoom: "分享聊天",
+    shareRoomDescription: "你可以将此房间邀请复制发送给你的朋友",
+    inviteMessage: "邀请你加入聊天室",
   },
   errors: {
     connectionLost: "连接已断开",
@@ -54,6 +59,8 @@ const enUS = {
   common: {
     send: "Send",
     logout: "Logout",
+    copy: "Copy",
+    copied: "Copied",
     room: "Room",
     username: "Username",
     roomKey: "Room Key",
@@ -87,6 +94,10 @@ const enUS = {
     messageNotSent: "Not sent",
     messageDelivered: "Delivered",
     messageRead: "Read",
+    shareRoom: "Share Room",
+    shareRoomDescription:
+      "You can copy this room invitation and send it to your friends",
+    inviteMessage: "Invite you to join the chat room",
   },
   errors: {
     connectionLost: "Connection lost",
