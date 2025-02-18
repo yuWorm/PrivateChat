@@ -46,16 +46,16 @@ git clone https://github.com/yuWorm/PrivateChat.git
 cd PrivateChat
 
 # 构建镜像
-docker build -t private_caht .
+docker build -t private_chat .
 # 运行
-docker run --name private_caht --restart=always -p 3000:3000 private_caht:latest 
+docker run --name private_chat --restart=always -p 3000:3000 private_chat:latest 
 ```
 
 ### 拉取镜像
 ```bash
-docker pull yuWorm/private_caht
+docker pull yuWorm/private_chat
 
-docker run --name private_caht --restart=always -p 3000:3000 private_caht:latest 
+docker run --name private_chat --restart=always -p 3000:3000 private_chat:latest 
 ```
 
 ### 访问

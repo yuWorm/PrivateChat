@@ -45,16 +45,16 @@ git clone https://github.com/yuWorm/PrivateChat.git
 cd PrivateChat
 
 # Build image
-docker build -t private_caht .
+docker build -t private_chat .
 # Run
-docker run --name private_caht --restart=always -p 3000:3000 private_caht:latest 
+docker run --name private_chat --restart=always -p 3000:3000 private_chat:latest 
 ```
 
 ### Pull Image
 ```bash
-docker pull yuWorm/private_caht
+docker pull yuWorm/private_chat
 
-docker run --name private_caht --restart=always -p 3000:3000 private_caht:latest 
+docker run --name private_chat --restart=always -p 3000:3000 private_chat:latest 
 ```
 
 ### Access
