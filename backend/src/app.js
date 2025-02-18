@@ -51,7 +51,7 @@ class App {
     }
 
     start() {
-        this.server.listen(config.port, () => {
+        this.server.listen(config.port, "0.0.0.0",() => {
             console.log(`Server is running on port ${config.port}`);
         });
     }
